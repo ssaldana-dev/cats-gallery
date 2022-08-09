@@ -1,1 +1,1 @@
-console.log('Este es un código de prueba');
+console.log('Los gatos son unos felinos adorables ¿cierto?');
