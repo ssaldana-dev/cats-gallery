@@ -1,37 +1,83 @@
+const photo = document.querySelector('#main-photo');
+const photoAuthor = document.querySelector('#photo-author-anchor');
+const photoDescription = document.querySelector('#description');
+
+const buttonLeft = document.querySelector('#left-button');
+const buttonRight = document.querySelector('#right-button');
+
 const kitties = [];
 
-kitties.push({
-    src: './assets/gatos-1',
-    description: 'Este gatito se ve muy feliz, miren nada más sus ojitos cerratos y sus patitas hacia arriba.',
+kitties[1] = {
+    src: './assets/gatos-1.jpg',
+    description: 'Este gatito se ve muy feliz, miren nada más sus ojitos cerraditos y sus patitas hacia arriba.',
     author: 'Pixabay',
     authorSite: 'https://www.pexels.com/@pixabay/',
     alt: 'Gatito, Acostado, En, Superficie'
-});
-kitties.push({
-    src: './assets/gatos-2',
-    description: 'Este gatito se ve súper tierno mirando hacia arriba, parece ser una descripción gráfica de la curiosidad de los gatos.',
-    author: 'Wojciech Kumpicki',
-    authorSite: 'https://www.pexels.com/@wojciech-kumpicki-1084687/',
+};
+kitties[2] = {
+    src: './assets/gatos-2.jpg',
+    description: 'Este gatito en su instinto por esconderse nos regaló una de las fotos más bonitas.',
+    author: 'Francesco Ungaro',
+    authorSite: 'https://www.pexels.com/@francesco-ungaro/',
     alt: 'Gato Atigrado Naranja Cerca De La Ventana'
-});
-kitties.push({
-    src: './assets/gatos-3',
+};
+kitties[3]= {
+    src: './assets/gatos-3.jpg',
     description: 'Estos dos gatitos parecen estar divirtiéndose con un juguete colgante. Amo cuando hacens esas cosas.',
     author: 'Pixabay',
     authorSite: 'https://www.pexels.com/@pixabay/',
     alt: 'Gatitos Atigrados En Edredón Floral'
-});
-kitties.push({
-    src: './assets/gatos-4',
+};
+kitties[4] = {
+    src: './assets/gatos-4.jpg',
     description: 'Este gatito aparte de tierno parece estar posando al más puro estilo de Latrell Spencer.',
     author: 'Anel Rossouw',
     authorSite: 'https://www.pexels.com/@anelrossouw/',
     alt: 'Foto De Gatito Atigrado Gris Acostado'
-});
-kitties.push({
-    src: './assets/gatos-5',
+};
+kitties[5] = {
+    src: './assets/gatos-5.jpg',
     description: 'Qué más decir de este gatito, su rostro plácido y sereno es suficiente para disfrutar de esta fotografía.',
     author: 'Ihsan Adityawarman',
     authorSite: 'https://www.pexels.com/@ihsanaditya/',
     alt: 'Fotografía En Primer Plano De Gato Atigrado Durmiendo'
-});
+};
+
+photo.src = kitties[1].src;
+photo.alt = kitties[1].alt;
+photoDescription.innerText = kitties[1].description;
+
+photoAuthor.innerText = kitties[1].author;
+photoAuthor.href = kitties[1].authorSite;
+
+buttonLeft.addEventListener('click', slideLeft);
+buttonRight.addEventListener('click', slideRight);
+
+let photoPosition = 1;
+
+function slideLeft () {
+    if (photoPosition === 1 ) {
+    } else {
+        photo.src = kitties[photoPosition - 1].src;
+        photo.alt = kitties[photoPosition - 1].alt;
+        photoDescription.innerText = kitties[photoPosition - 1].description;
+
+        photoAuthor.innerText = kitties[photoPosition - 1].author;
+        photoAuthor.href = kitties[photoPosition - 1].authorSite;
+
+        photoPosition--;
+    }
+}
+function slideRight () {
+    if (photoPosition === 5 ) {
+    } else {
+        photo.src = kitties[photoPosition + 1].src;
+        photo.alt = kitties[photoPosition + 1].alt;
+        photoDescription.innerText = kitties[photoPosition + 1].description;
+
+        photoAuthor.innerText = kitties[photoPosition + 1].author;
+        photoAuthor.href = kitties[photoPosition + 1].authorSite;
+
+        photoPosition++;
+    }
+}
