@@ -55,3 +55,11 @@ main {
     text-align: center;
     font-size: 2.2rem;
 }
+
+.beautyMessage {
+    align-self: flex-start;
+    width: 50%;
+    margin-top: 50px;
+    margin-left: 25px;
+    font-size: 2rem;
+}
