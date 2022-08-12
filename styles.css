@@ -42,18 +42,119 @@ main {
     font-size: 1.6rem;
 }
 .gallery-photos-button {
+    position: absolute;
     width: 40px;
     height: 40px;
+    border: none;
+    background-color: transparent;
     cursor: pointer;
 }
 .gallery-photos-button--left {
-    position: absolute;
     left: 15px;
 }
-.gallery-photos-button--right {
+.gallery-photos-button--left-arrow,
+.gallery-photos-button--left-arrow::after,
+.gallery-photos-button--left-arrow::before {
     position: absolute;
+    width: 30px;
+    height: 30px;
+    border-left: #2c2c2c solid 2px;
+    border-bottom: #2c2c2c solid 2px;
+
+}
+.gallery-photos-button--left-arrow {
+    transform: rotate(45deg);
+
+}
+.gallery-photos-button--left-arrow::after {
+    transition: 350ms;
+    left: -2px;
+    bottom: -2px;
+    content: "";
+}
+.gallery-photos-button--left:hover .gallery-photos-button--left-arrow::after {
+    transition: 350ms;
+    border-bottom: #2c2c2c 2px dotted;
+    border-left: #2c2c2c 2px dotted;
+    bottom: 5px;
+    left: 5px;
+}
+.gallery-photos-button--left-arrow::before {
+    transition: 350ms;
+    left: -2px;
+    bottom: -2px;
+    content: "";
+}
+.gallery-photos-button--left:hover .gallery-photos-button--left-arrow::before {
+    transition: 350ms;
+    transform: rotate(-45deg);
+    height: 0;
+    border-bottom: #2c2c2c 2px dotted;
+    bottom: 20px;
+    left: 5px;
+}
+.gallery-photos-button--left:active .gallery-photos-button--left-arrow::after {
+    transition: 100ms;
+    left: 2px;
+    bottom: 2px;
+}
+.gallery-photos-button--left:active .gallery-photos-button--left-arrow::before {
+    transition: 100ms;
+    left: 3px;
+    bottom: 18px;
+}
+.gallery-photos-button--right {
     right: 15px;
 }
+.gallery-photos-button--right-arrow,
+.gallery-photos-button--right-arrow::after,
+.gallery-photos-button--right-arrow::before{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-right: #2c2c2c 2px solid;
+    border-bottom: #2c2c2c 2px solid;
+}
+.gallery-photos-button--right-arrow {
+    transform: rotate(-45deg);
+}
+.gallery-photos-button--right-arrow::after {
+    content: "";
+    right: -2px;
+    bottom: -2px;
+    transition: 350ms;
+}
+.gallery-photos-button--right:hover .gallery-photos-button--right-arrow::after {
+    transition: 350ms;
+    right: 5px;
+    bottom: 5px;
+    border-right: #2c2c2c dotted 2px;
+    border-bottom: #2c2c2c dotted 2px;
+}
+.gallery-photos-button--right:active .gallery-photos-button--right-arrow::after {
+    transition: 100ms;
+    right: 2px;
+    bottom: 2px;
+}
+.gallery-photos-button--right-arrow::before {
+    content: "";
+    right: -2px;
+    bottom: -2px;
+    transition: 350ms;
+}
+.gallery-photos-button--right:hover .gallery-photos-button--right-arrow::before {
+    transform: rotate(45deg);
+    height: 0;
+    right: 5px;
+    bottom: 20px;
+    border-bottom: #2c2c2c dotted 2px;
+}
+.gallery-photos-button--right:active .gallery-photos-button--right-arrow::before {
+    transition: 100ms;
+    right: 3px;
+    bottom: 18px;
+}
+
 .gallery-description {
     display: flex;
     align-items: center;
@@ -67,10 +168,3 @@ main {
     font-size: 2.2rem;
 }
 
-.beautyMessage {
-    align-self: flex-start;
-    width: 50%;
-    margin-top: 50px;
-    margin-left: 25px;
-    font-size: 2rem;
-}
