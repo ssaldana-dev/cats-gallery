@@ -1,5 +1,5 @@
 # cats-gallery
-This is a cats gallery done for practicing some concepts of git and github.
+This is a cats gallery done for practice some concepts at git and github.
 
 Nothing too special, just some adorable cat photos and some code.
 
