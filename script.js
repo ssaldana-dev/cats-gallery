@@ -1,3 +1,4 @@
+const carousel = document.querySelector('#carousel')
 const photo = document.querySelector('#main-photo');
 const photoAuthor = document.querySelector('#photo-author-anchor');
 const photoDescription = document.querySelector('#description');
@@ -7,35 +8,35 @@ const buttonRight = document.querySelector('#right-button');
 
 const kitties = [];
 
-kitties[1] = {
+kitties[0] = {
     src: 'https://i.imgur.com/d2eIISv.jpg',
     description: 'Este gatito se ve muy feliz, miren nada más sus ojitos cerraditos y sus patitas hacia arriba.',
     author: 'Pixabay',
     authorSite: 'https://www.pexels.com/@pixabay/',
     alt: 'Gatito, Acostado, En, Superficie'
 };
-kitties[2] = {
+kitties[1] = {
     src: 'https://i.imgur.com/GJbSmUJ.jpg',
     description: 'Este gatito en su instinto por esconderse nos regaló una de las fotos más bonitas.',
     author: 'Francesco Ungaro',
     authorSite: 'https://www.pexels.com/@francesco-ungaro/',
     alt: 'Gato Atigrado Naranja Cerca De La Ventana'
 };
-kitties[3]= {
+kitties[2]= {
     src: 'https://i.imgur.com/S2zOnV6.jpg',
     description: 'Estos dos gatitos parecen estar divirtiéndose con un juguete colgante. Amo cuando hacens esas cosas.',
     author: 'Pixabay',
     authorSite: 'https://www.pexels.com/@pixabay/',
     alt: 'Gatitos Atigrados En Edredón Floral'
 };
-kitties[4] = {
+kitties[3] = {
     src: 'https://i.imgur.com/L9dFzJT.jpg',
     description: 'Este gatito aparte de tierno parece estar posando al más puro estilo de Latrell Spencer.',
     author: 'Anel Rossouw',
     authorSite: 'https://www.pexels.com/@anelrossouw/',
     alt: 'Foto De Gatito Atigrado Gris Acostado'
 };
-kitties[5] = {
+kitties[4] = {
     src: 'https://i.imgur.com/c3Pg72P.jpg',
     description: 'Qué más decir de este gatito, su rostro plácido y sereno es suficiente para disfrutar de esta fotografía.',
     author: 'Ihsan Adityawarman',
@@ -43,41 +44,46 @@ kitties[5] = {
     alt: 'Fotografía En Primer Plano De Gato Atigrado Durmiendo'
 };
 
-photo.src = kitties[1].src;
-photo.alt = kitties[1].alt;
-photoDescription.innerText = kitties[1].description;
+const images = [];
 
-photoAuthor.innerText = kitties[1].author;
-photoAuthor.href = kitties[1].authorSite;
+for (let i = 0; i <= kitties.length - 1; i++) {
+    images[i] = document.createElement('img');
+    images[i].src = kitties[i].src;
+    images[i].alt = kitties[i].alt;
+    images[i].className = 'gallery-carousel-image';
 
-buttonLeft.addEventListener('click', slideLeft);
-buttonRight.addEventListener('click', slideRight);
+    carousel.appendChild(images[i]);
+}
 
-let photoPosition = 1;
+buttonLeft.addEventListener('click', scrollToLeft);
+buttonRight.addEventListener('click', scrollToRight);
 
-function slideLeft () {
-    if (photoPosition === 1 ) {
+let imagePosition = 0;
+let imageScrollPosition = 0;
+
+loadDescription();
+
+function scrollToLeft () {
+    if (imagePosition === 0) {
     } else {
-        photo.src = kitties[photoPosition - 1].src;
-        photo.alt = kitties[photoPosition - 1].alt;
-        photoDescription.innerText = kitties[photoPosition - 1].description;
-
-        photoAuthor.innerText = kitties[photoPosition - 1].author;
-        photoAuthor.href = kitties[photoPosition - 1].authorSite;
-
-        photoPosition--;
+        imageScrollPosition -= images[imagePosition].width;
+        carousel.scrollLeft = imageScrollPosition;
+        imagePosition--;
+        loadDescription();
     }
 }
-function slideRight () {
-    if (photoPosition === 5 ) {
+function scrollToRight () {
+    if (imagePosition === images.length -1) {
     } else {
-        photo.src = kitties[photoPosition + 1].src;
-        photo.alt = kitties[photoPosition + 1].alt;
-        photoDescription.innerText = kitties[photoPosition + 1].description;
-
-        photoAuthor.innerText = kitties[photoPosition + 1].author;
-        photoAuthor.href = kitties[photoPosition + 1].authorSite;
-
-        photoPosition++;
+        imageScrollPosition += images[imagePosition].width;
+        carousel.scrollLeft = imageScrollPosition;
+        imagePosition++;
+        loadDescription();
     }
+}
+
+function loadDescription () {
+    photoAuthor.innerText = kitties[imagePosition].author;
+    photoAuthor.href = kitties[imagePosition].authorSite;
+    photoDescription.innerText = kitties[imagePosition].description;
 }
